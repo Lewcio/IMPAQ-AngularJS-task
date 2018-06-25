@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">&nbsp;</th>
+    <th scope="col">ID</th>
+    <th scope="col">Name</th>
+    <th scope="col">Subname</th>
+    <th scope="col">Date of birth</th>
+    <th scope="col">Mobile number</th>
+    <th scope="col">Address (city + stree + house number)</th>
+    <th scope="col"><button type="button" class="btn btn-outline-primary btn-sm" *ngIf="users.length > 0"> Edit selected</button></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr view-user [user]="user" (onUserEdit)="editUser($event)" (onUserDelete)="deleteUser($event)" *ngFor="let user of users">
+  </tr>
+  </tbody>
+</table>

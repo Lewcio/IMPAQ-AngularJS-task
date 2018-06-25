@@ -1,0 +1,6 @@
+td {
+  display: none;
+}
+td.view {
+  display: table-cell;
+}

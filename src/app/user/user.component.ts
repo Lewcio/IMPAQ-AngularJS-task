@@ -8,23 +8,34 @@ import {User} from './user';
 })
 export class UserComponent implements OnInit {
   @Input() user: User;
-  @Output() onUserEdit: EventEmitter<User>;
   @Output() onUserDelete: EventEmitter<User>;
-  @Output() onUserSave: EventEmitter<User>;
   editing = false;
   selected = false;
   constructor() {
-    this.onUserEdit = new EventEmitter<User>();
     this.onUserDelete = new EventEmitter<User>();
-    this.onUserSave = new EventEmitter<User>();
   }
 
   ngOnInit() {
   }
 
-  editUser(user: User) {
-    this.editing = !this.editing;
-    this.onUserEdit.emit(user);
+  editUser(name: HTMLInputElement, subname: HTMLInputElement, birth: HTMLInputElement, mobileNumber: HTMLInputElement, address: HTMLInputElement): boolean {
+    if (name.value.length > 0 && subname.value.length > 0) {
+      this.user.name = name.value;
+      this.user.subname = subname.value;
+      this.user.birth = birth.value;
+      this.user.mobileNumber = +mobileNumber.value;
+      this.user.address = address.value;
+      this.editing = false;
+    }
+    return false;
+  }
+
+  onEditSelected() {
+    if (this.selected) {
+      this.editing = true;
+      this.selected = false;
+    }
+    console.log(this.editing);
   }
 
   deleteUser(user: User) {
